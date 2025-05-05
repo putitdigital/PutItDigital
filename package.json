@@ -1,0 +1,52 @@
+{
+
+  "name": "putitdigital",
+
+  "version": "1.0.0",
+
+  "description": "<!-- **putitdigital/PutItDigital** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.",
+
+  "main": "server.js",
+
+  "scripts": {
+
+    "start": "node server.js",
+
+    "devStart": "nodemon server.js"
+
+  },
+
+  "dependencies": {
+
+    "dotenv": "^16.5.0",
+
+    "ejs": "^3.1.10",
+
+    "express": "^5.1.0",
+
+    "nodemon": "^3.1.10"
+
+  },
+
+  "repository": {
+
+    "type": "git",
+
+    "url": "git+https://github.com/putitdigital/PutItDigital.git"
+
+  },
+
+  "author": "",
+
+  "license": "ISC",
+
+  "bugs": {
+
+    "url": "https://github.com/putitdigital/PutItDigital/issues"
+
+  },
+
+  "homepage": "https://github.com/putitdigital/PutItDigital#readme"
+
+}
+
