@@ -3,13 +3,24 @@
  * script.js - Interactive functionality for the futuristic navigation experience
  * March 24, 2025
  */
+console.log("main js online")
+  document.addEventListener('DOMContentLoaded', function() {
+          // Simulate loading time (remove this in production)
+          setTimeout(function() {
+              document.body.classList.add('loaded');
+          }, 2000);
+          
+          feather.replace();
+      });
+
+console.log("Vite + Tailwind is working!");
 
 document.addEventListener('DOMContentLoaded', () => {
     // DOM Elements
     const navbar = document.getElementById('navbar');
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
-    const navLinks = document.querySelectorAll('.nav-link');
+    const navLinks = document.querySelectorAll('.nav-link-section');
     const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
     const sections = document.querySelectorAll('section');
     const bgElements = document.querySelectorAll('.fixed > div');

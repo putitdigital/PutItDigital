@@ -1,0 +1,29 @@
+
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    body {
+        font-family: 'Inter', sans-serif;
+    }
+    .builder-container {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        height: 100vh;
+    }
+    .preview-container {
+        border-left: 1px solid #e2e8f0;
+        overflow-y: auto;
+    }
+    .component-item {
+        transition: all 0.2s ease;
+    }
+    .component-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    .droppable-area {
+        min-height: 200px;
+        border: 2px dashed #cbd5e0;
+        border-radius: 0.5rem;
+    }
+    .active-tab {
+        border-bottom: 2px solid #6366f1;
+    }
