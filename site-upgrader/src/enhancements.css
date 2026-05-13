@@ -1,0 +1,129 @@
+:root {
+  --su-max-width: 1160px;
+  --su-heading-font: "Outfit", "Segoe UI", sans-serif;
+  --su-body-font: "Manrope", "Segoe UI", sans-serif;
+  --su-text: #1f2937;
+  --su-muted: #475569;
+  --su-bg: #f5f7ff;
+  --su-surface: #ffffff;
+  --su-brand: #0f766e;
+  --su-brand-2: #0c4a6e;
+  --su-border: rgba(15, 23, 42, 0.12);
+}
+
+html {
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body.su-upgraded {
+  margin: 0;
+  color: var(--su-text) !important;
+  font-family: var(--su-body-font) !important;
+  line-height: 1.68;
+  background:
+    radial-gradient(circle at 10% 10%, #dcfce7 0%, transparent 34%),
+    radial-gradient(circle at 88% 14%, #dbeafe 0%, transparent 30%),
+    linear-gradient(150deg, var(--su-bg) 0%, #f8fafc 35%, #f0fdfa 100%) !important;
+}
+
+body.su-upgraded * {
+  box-sizing: border-box;
+}
+
+body.su-upgraded img,
+body.su-upgraded picture,
+body.su-upgraded video,
+body.su-upgraded canvas,
+body.su-upgraded svg {
+  max-width: 100%;
+  height: auto;
+}
+
+body.su-upgraded h1,
+body.su-upgraded h2,
+body.su-upgraded h3,
+body.su-upgraded h4,
+body.su-upgraded h5,
+body.su-upgraded h6 {
+  font-family: var(--su-heading-font) !important;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  color: #0f172a !important;
+}
+
+body.su-upgraded p,
+body.su-upgraded li,
+body.su-upgraded small,
+body.su-upgraded span {
+  color: var(--su-muted);
+}
+
+body.su-upgraded a {
+  color: var(--su-brand-2) !important;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.14em;
+}
+
+body.su-upgraded main,
+body.su-upgraded section,
+body.su-upgraded article,
+body.su-upgraded header,
+body.su-upgraded footer {
+  width: min(var(--su-max-width), 92vw);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body.su-upgraded .su-block {
+  margin-top: 18px;
+  margin-bottom: 18px;
+  padding: clamp(14px, 2vw, 28px);
+  background: color-mix(in srgb, var(--su-surface) 88%, #eff6ff 12%);
+  border: 1px solid var(--su-border);
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+}
+
+body.su-upgraded .su-media {
+  border-radius: 14px;
+  box-shadow: 0 10px 18px rgba(2, 6, 23, 0.15);
+}
+
+body.su-upgraded .su-cta,
+body.su-upgraded button,
+body.su-upgraded input[type="submit"],
+body.su-upgraded input[type="button"] {
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-weight: 700;
+  color: #ffffff !important;
+  background: linear-gradient(135deg, var(--su-brand), var(--su-brand-2));
+  box-shadow: 0 10px 18px rgba(15, 118, 110, 0.2);
+}
+
+body.su-upgraded input,
+body.su-upgraded textarea,
+body.su-upgraded select {
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  padding: 10px 12px;
+}
+
+body.su-upgraded a:focus,
+body.su-upgraded button:focus,
+body.su-upgraded input:focus,
+body.su-upgraded textarea:focus,
+body.su-upgraded select:focus {
+  outline: 2px solid color-mix(in srgb, var(--su-brand) 70%, white);
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  body.su-upgraded .su-block {
+    padding: 14px;
+    border-radius: 14px;
+  }
+}

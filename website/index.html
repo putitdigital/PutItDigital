@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../photos/favicon.ico">
+  <title>Horizontal Scroll Section</title>
+  <link rel="stylesheet" href="https://use.typekit.net/skn8ash.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body class="is-loading">
+    <div class="page-loader" aria-hidden="true">
+        <img class="page-loader__image" src="./images/loader.png" alt="">
+        <p class="page-loader__text">Loading...</p>
+    </div>
+  <div class="global-bg" aria-hidden="true">
+    <video autoplay playsinline muted loop preload="metadata" class="hero-video" data-fallback-src="https://cdn.coverr.co/videos/coverr-aerial-view-of-waves-1579/1080p.mp4">
+        <source src="./images/202587-918431513_medium.mp4" type="video/mp4">
+    </video>
+  </div>
+
+    <header>
+      <div class="header-container">
+        <nav>
+          <ul>
+            <li class="site-nav"><a class="site-nav__link" href="#hero">Home</a></li>
+            <li class="site-nav"><a class="site-nav__link" href="#sectionPin">About</a></li>
+            <li class="site-nav"><a class="site-nav__link" href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div class="hero-spotlight"></div>
+    <div class="nav-active-display" aria-live="polite"></div>
+    
+  <div class="container" data-scroll-container>
+    <section id="hero" data-scroll-section data-bgcolor="#bcb8ad" data-textcolor="#032f35">
+        <!-- <h1 data-scroll data-scroll-speed="1">
+            <span>You think it.</span> 
+            <span>We build it.</span> 
+            <span>We put it digital.</span>
+        </h1> -->
+         <h1 data-scroll data-scroll-speed="1">
+            <span>Lorem ipsum dolor.</span> 
+            <span>Lorem ipsum dolor.</span> 
+            <span>Lorem ipsum dolor.</span>
+        </h1>
+    </section>
+
+    <section id="sectionPin" data-scroll-section>
+      <div class="pin-wrap">
+        <div id="about" class="scroll-horizontal">
+            <h3>about</h3>
+             <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div id="services" class="scroll-horizontal">
+            <h3>.services</h3>
+            <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+        <img src="https://images.pexels.com/photos/5207262/pexels-photo-5207262.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=900" alt="">
+        <img src="https://images.pexels.com/photos/3371358/pexels-photo-3371358.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=900" alt="">
+        <img src="https://images.pexels.com/photos/3618545/pexels-photo-3618545.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=900" alt="">
+      </div>
+    </section>
+
+    <section id="contact" data-scroll-section data-bgcolor="#e3857a" data-textcolor="#f1dba7">
+      <div class="contact-shell">
+        <div class="contact-container">
+          <div class="contact-copy">
+            <p class="contact-kicker">Let us build your next move</p>
+            <h2>Contact Us</h2>
+            <p class="contact-description">Tell us what you want to launch, automate, or redesign. We will come back with a practical game plan and timeline.</p>
+            <div class="contact-meta">
+              <span>Fast response</span>
+              <span>Clear scope</span>
+              <span>Digital-first execution</span>
+            </div>
+          </div>
+
+          <form class="contact-form">
+            <label class="contact-field">
+              <span>Name</span>
+              <input type="text" placeholder="Your Name" required>
+            </label>
+            <label class="contact-field">
+              <span>Email</span>
+              <input type="email" placeholder="you@company.com" required>
+            </label>
+            <label class="contact-field contact-field--full">
+              <span>Message</span>
+              <textarea placeholder="Tell us about your project" required></textarea>
+            </label>
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="contact-footer">
+    <div class="line-break"></div>
+    <p>&copy; 2024 Put It Digital. All rights reserved.</p>
+  </footer>
+
+  <button class="chatbot-fab" type="button" aria-label="Open chat assistant">
+    <span class="chatbot-fab__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" role="img" focusable="false">
+        <path d="M12 3C6.48 3 2 6.94 2 11.8c0 2.04.81 3.92 2.17 5.41L3 21l4.32-1.71c1.41.76 3.04 1.21 4.68 1.21 5.52 0 10-3.94 10-8.8S17.52 3 12 3zm-4.5 9.5a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5zm4.5 0a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5zm4.5 0a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5z" fill="currentColor"></path>
+      </svg>
+    </span>
+    <span class="chatbot-fab__label">Chat</span>
+  </button>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>
