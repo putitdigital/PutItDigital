@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Adventure</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar card">
+      <div>
+        <p class="eyebrow">Put It Digital</p>
+        <h1>Math Adventure</h1>
+      </div>
+      <div class="level-pill" id="levelLabel">Level 1</div>
+    </header>
+
+    <section class="setup card" id="setupCard">
+      <h2>Add Your Kids</h2>
+      <p>Enter each child name, then start the game.</p>
+      <form id="nameForm" class="name-form" autocomplete="off">
+        <span id="avatarPreview" class="avatar-preview" aria-hidden="true">🦊</span>
+        <select id="kidAvatarSelect" aria-label="Choose avatar">
+          <option value="random">🎲 Random</option>
+          <option value="0">🦊 Fox</option>
+          <option value="1">🐼 Panda</option>
+          <option value="2">🦁 Lion</option>
+          <option value="3">🐨 Koala</option>
+          <option value="4">🐸 Frog</option>
+          <option value="5">🐯 Tiger</option>
+          <option value="6">🐙 Octopus</option>
+          <option value="7">🐵 Monkey</option>
+        </select>
+        <select id="kidGradeSelect" aria-label="Choose grade" required>
+          <option value="">Select Grade</option>
+          <option value="Grade R">Grade R</option>
+          <option value="Grade 1">Grade 1</option>
+          <option value="Grade 2">Grade 2</option>
+          <option value="Grade 3">Grade 3</option>
+          <option value="Grade 4">Grade 4</option>
+          <option value="Grade 5">Grade 5</option>
+          <option value="Grade 6">Grade 6</option>
+          <option value="Grade 7">Grade 7</option>
+          <option value="Grade 8">Grade 8</option>
+          <option value="Grade 9">Grade 9</option>
+          <option value="Grade 10">Grade 10</option>
+          <option value="Grade 11">Grade 11</option>
+          <option value="Grade 12">Grade 12</option>
+        </select>
+        <input id="kidNameInput" type="text" placeholder="Type a name and surname (example: Hope Sangweni )" maxlength="20" required>
+        <button class="btn secondary" type="submit">Add Kid</button>
+      </form>
+      <div id="kidList" class="kid-list" aria-live="polite"></div>
+      <div class="control-group start-kid-picker">
+        <label for="startKidSelect">Who Is Playing Now?</label>
+        <select id="startKidSelect" aria-label="Select kid to start" disabled>
+          <option value="">Select child</option>
+        </select>
+      </div>
+      <button id="startGameBtn" class="btn primary" type="button" disabled>Start Playing</button>
+    </section>
+
+    <div id="gameArea" class="game-area hidden" aria-hidden="true">
+      <section class="controls card">
+        <div class="control-group">
+          <label for="playerSelect">Player</label>
+          <select id="playerSelect" disabled></select>
+        </div>
+
+        <div class="control-group voice-wrap">
+          <label>
+            <input type="checkbox" id="voiceEnabled" checked>
+            Voice Mode
+          </label>
+        </div>
+
+        <button id="readQuestionBtn" class="btn secondary" type="button">Read Question</button>
+
+        <button id="newGameBtn" class="btn secondary">New Game</button>
+      </section>
+
+      <section class="stats-grid">
+        <article class="stat card">
+          <p>Score</p>
+          <h2 id="score">0</h2>
+        </article>
+        <article class="stat card">
+          <p>Streak</p>
+          <h2 id="streak">0</h2>
+        </article>
+      </section>
+
+      <section class="question-card card">
+        <p class="question-label">Solve this</p>
+        <h3 id="question" aria-live="polite">7 + 5 = ?</h3>
+        <div id="countingAid" class="counting-aid" aria-live="polite"></div>
+        <div id="choiceBoard" class="choice-board" aria-live="polite"></div>
+        <form id="answerForm" class="answer-form" autocomplete="off">
+          <input id="answerInput" type="number" inputmode="numeric" placeholder="Type answer" required>
+          <button class="btn primary" type="submit">Check</button>
+        </form>
+        <p id="feedback" class="feedback" aria-live="polite"></p>
+      </section>
+
+      <section class="progress card">
+        <div class="progress-top">
+          <p>Snake Level Map</p>
+          <strong id="progressText">0 / 10</strong>
+        </div>
+        <div id="snakeViewport" class="snake-viewport" aria-label="Level snake map">
+          <div id="snakeTrack" class="snake-track"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
