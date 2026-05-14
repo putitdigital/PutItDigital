@@ -26,3 +26,4 @@ src-tauri/target
 *.woff2
 *.otf
 *.log
+*.duck

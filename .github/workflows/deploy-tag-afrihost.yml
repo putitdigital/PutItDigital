@@ -3,7 +3,7 @@ name: Deploy To Afrihost On Tag
 on:
   push:
     tags:
-      - "**"
+      - "v*"
   workflow_dispatch:
 
 jobs:
@@ -21,10 +21,10 @@ jobs:
           server: ftp.putitdigital.co.za
           protocol: ftp
           port: 21
-          username: sithembiso.sangweni@putitdigital.co.za
+          username: putitdb9l2p6
           password: ${{ secrets.AFRIHOST_FTP_PASSWORD }}
           local-dir: ./website/
-          server-dir: ${{ secrets.AFRIHOST_FTP_TARGET_DIR }}
+          server-dir: /public_html/
           dangerous-clean-slate: false
           exclude: |
             **/.git*
