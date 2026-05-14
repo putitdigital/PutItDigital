@@ -19,12 +19,12 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ftp.putitdigital.co.za
-          protocol: ftp
+          protocol: ftps
           port: 21
           username: putitdb9l2p6
           password: ${{ secrets.AFRIHOST_FTP_PASSWORD }}
           local-dir: ./website/
-          server-dir: /public_html/
+          server-dir: public_html/
           dangerous-clean-slate: false
           exclude: |
             **/.git*
