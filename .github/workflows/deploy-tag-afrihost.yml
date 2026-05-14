@@ -1,0 +1,33 @@
+name: Deploy To Afrihost On Tag
+
+on:
+  push:
+    tags:
+      - "**"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Upload Website To Afrihost
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy website folder via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ftp.putitdigital.co.za
+          protocol: ftp
+          port: 21
+          username: sithembiso.sangweni@putitdigital.co.za
+          password: ${{ secrets.AFRIHOST_FTP_PASSWORD }}
+          local-dir: ./website/
+          server-dir: ${{ secrets.AFRIHOST_FTP_TARGET_DIR }}
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.DS_Store
