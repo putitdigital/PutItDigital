@@ -1,46 +1,24 @@
-# PutItDigital
+# Sithembiso Eugene Sangweni
 
-This repository contains the PutItDigital website, the EduKids app, and the site-upgrader tools.
+## Full-Stack Developer
 
-## What to run
-
-### EduKids app
-
+### Contacts
 ```bash
-cd eduKids
-npm install
-npm start
++27 67 225 4116
++27 84 538 8953
+sithembiso72@gmail.com
 ```
+### portfolio
 
-### Site upgrader
+see my portfolio at 
 
-```bash
-cd site-upgrader
-npm install
-npm start
-```
+`https://putitdigital.co.za/portfolio/` 
 
-### Static website preview
+### About
 
-The live website files are in `website/`.
+I am a hardworking and dedicated individual with a strong passion for Information Technology, future technologies, and Artificial Intelligence. I am focused on growing my skills, gaining new experiences, and building innovative solutions.
 
-```bash
-cd website
-python3 -m http.server 8080
-```
+I enjoy programming and playing chess, as these activities strengthen my creativity and problem-solving abilities. I believe AI is shaping the future, and I aim to grow alongside it while creating meaningful impact through technology.
 
-Then open `http://localhost:8080` in your browser.
+I strongly believe in developing leaders rather than followers and always strive to inspire growth, creativity, and innovation.
 
-## Afrihost deploy
-
-The GitHub Actions workflow deploys the contents of `website/` when you push a tag that starts with `v`.
-
-```bash
-git tag v1.0.2
-git push origin v1.0.2
-```
-
-## Notes
-
-- The deploy workflow uploads `website/` to the Afrihost FTP target directory.
-- Make sure the GitHub Actions secrets are set before pushing a tag.

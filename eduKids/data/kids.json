@@ -5,13 +5,13 @@
     "grade": "1",
     "icon": "🐸",
     "color": "#f0b429",
-    "score": 0,
+    "score": 85,
     "bestScore": 0,
     "level": 1,
     "questionsThisLevel": 7,
     "neededForNextLevel": 10,
     "createdAt": "2026-05-13T16:47:16.426Z",
-    "updatedAt": "2026-05-13T18:04:04.408Z"
+    "updatedAt": "2026-05-14T15:20:19.679Z"
   },
   {
     "id": "1778692245996-kdq4vi",
@@ -19,12 +19,12 @@
     "grade": "Grade R",
     "icon": "🐸",
     "color": "#f0b429",
-    "score": 1788,
+    "score": 457,
     "bestScore": 0,
-    "level": 12,
+    "level": 4,
     "questionsThisLevel": 1,
     "neededForNextLevel": 10,
     "createdAt": "2026-05-13T17:10:45.996Z",
-    "updatedAt": "2026-05-13T19:21:30.584Z"
+    "updatedAt": "2026-05-14T14:59:51.400Z"
   }
 ]
