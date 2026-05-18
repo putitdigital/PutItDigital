@@ -316,7 +316,19 @@ h2 {
   font-size: 2rem;
   max-width: 400px;
 }
-
+#about {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10vw;
+  border: #00e1ff solid 0.5px;
+  width: 150vw;
+}
+.about-container{
+  border: #00e1ff solid 0.5px;
+    max-width: 100%;
+}
 .credit {
   font-family: Termina, sans-serif;
 }
