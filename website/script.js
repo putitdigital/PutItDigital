@@ -2,6 +2,8 @@ const navToggle = document.querySelector('.nav-toggle');
 const nav = document.getElementById('site-navigation');
 const dropdownButton = document.querySelector('.dropdown-button');
 const dropdown = document.querySelector('.dropdown');
+
+// Slider elements
 const slides = document.querySelectorAll('.hero-slide');
 const dots = document.querySelectorAll('.slider-dot');
 let currentSlide = 0;
@@ -29,35 +31,39 @@ if (dropdownButton && dropdown) {
 }
 
 function setSlide(index) {
-  slides.forEach((slide, slideIndex) => {
-    slide.classList.toggle('active', slideIndex === index);
-  });
-  dots.forEach((dot, dotIndex) => {
-    dot.classList.toggle('active', dotIndex === index);
-  });
+  if (!slides.length) return;
+  slides.forEach((s, i) => s.classList.toggle('active', i === index));
+  dots.forEach((d, i) => d.classList.toggle('active', i === index));
   currentSlide = index;
 }
 
 function advanceSlide() {
-  const nextSlide = (currentSlide + 1) % slides.length;
-  setSlide(nextSlide);
+  const next = (currentSlide + 1) % slides.length;
+  setSlide(next);
 }
 
 function startSlideTimer() {
   clearInterval(slideTimer);
-  slideTimer = setInterval(advanceSlide, 8000);
+  slideTimer = setInterval(advanceSlide, 7000);
 }
 
-if (dots.length) {
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      setSlide(index);
-      startSlideTimer();
-    });
-  });
+if (dots.length && slides.length) {
+  dots.forEach((dot, idx) => dot.addEventListener('click', () => {
+    setSlide(idx);
+    startSlideTimer();
+  }));
+
+  const sliderEl = document.querySelector('.hero-slider');
+  if (sliderEl) {
+    sliderEl.addEventListener('mouseenter', () => clearInterval(slideTimer));
+    sliderEl.addEventListener('mouseleave', startSlideTimer);
+  }
+
+  setSlide(0);
   startSlideTimer();
 }
 
+// AI popup
 const aiBadge = document.querySelector('.ai-badge');
 const aiPopup = document.querySelector('.ai-popup');
 const aiBackdrop = document.querySelector('.ai-backdrop');
@@ -120,3 +126,39 @@ if (aiBadge && aiPopup && aiBackdrop && aiPopupClose) {
     }
   });
 }
+
+const cursorEl = document.createElement('div');
+cursorEl.className = 'water-cursor';
+document.body.appendChild(cursorEl);
+let lastTrailTime = 0;
+
+document.addEventListener('mousemove', (event) => {
+  cursorEl.style.left = `${event.clientX}px`;
+  cursorEl.style.top = `${event.clientY}px`;
+  const now = performance.now();
+  if (now - lastTrailTime > 10) {
+    lastTrailTime = now;
+    const trail = document.createElement('div');
+    trail.className = 'water-trail';
+    trail.style.left = `${event.clientX}px`;
+    trail.style.top = `${event.clientY}px`;
+    document.body.appendChild(trail);
+    trail.addEventListener('animationend', () => trail.remove());
+  }
+});
+
+document.addEventListener('mousedown', (event) => {
+  cursorEl.classList.add('water-click');
+
+  const drop = document.createElement('div');
+  drop.className = 'water-drop';
+  drop.style.left = `${event.clientX}px`;
+  drop.style.top = `${event.clientY}px`;
+  document.body.appendChild(drop);
+
+  drop.addEventListener('animationend', () => drop.remove());
+});
+
+document.addEventListener('mouseup', () => {
+  cursorEl.classList.remove('water-click');
+});

@@ -8,6 +8,15 @@
   <title>PutItDigital</title>
   <link rel="stylesheet" href="./style.css">
 </head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RFRHEEFCH6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RFRHEEFCH6');
+</script>
 <body>
   <header class="site-header">
     <div class="site-brand">
@@ -40,10 +49,6 @@
             <p class="eyebrow">Digital strategy, design & hosting</p>
             <h1>Build bold, modern websites that grow your business.</h1>
             <p class="hero-text">PutItDigital creates websites with clear messaging, polished design, and reliable hosting so your brand looks great online and converts visitors to customers.</p>
-            <div class="hero-actions">
-              <a class="button primary" href="#contact">Start a project</a>
-              <a class="button secondary" href="#work">View examples</a>
-            </div>
           </div>
           <div class="hero-panel">
             <div class="hero-card">
@@ -62,10 +67,6 @@
             <p class="eyebrow">Managed hosting and uptime</p>
             <h1>Keep your website secure, fast, and always available.</h1>
             <p class="hero-text">Our hosting service includes performance monitoring, SSL, automated backups, and maintenance so your business stays online without extra hassle.</p>
-            <div class="hero-actions">
-              <a class="button primary" href="#contact">Get hosting</a>
-              <a class="button secondary" href="#services">See services</a>
-            </div>
           </div>
           <div class="hero-panel">
             <div class="hero-card">
@@ -107,8 +108,14 @@
   </footer>
 
   <div class="ai-badge" aria-label="PutItDigital AI assistant" role="button" tabindex="0">
-    <span class="badge-icon" aria-hidden="true">💬</span>
+    <span class="badge-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path d="M4 4c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v11c0 1.1-.9 2-2 2H8.5L5 21V4z" fill="currentColor"/>
+        <circle cx="18" cy="6" r="1.6" fill="var(--accent)" />
+      </svg>
+    </span>
     <span class="badge-label">AI</span>
+    <span class="badge-tooltip" role="tooltip">Chat with our AI assistant</span>
   </div>
 
   <div class="ai-popup" role="dialog" aria-modal="true" aria-labelledby="ai-popup-title" aria-hidden="true">
