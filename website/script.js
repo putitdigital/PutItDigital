@@ -162,3 +162,34 @@ document.addEventListener('mousedown', (event) => {
 document.addEventListener('mouseup', () => {
   cursorEl.classList.remove('water-click');
 });
+
+// Video scrubbing on scroll
+const heroVideo = document.querySelector('.hero-video');
+let scrollTimeout;
+let lastScrollY = window.scrollY;
+
+if (heroVideo) {
+  heroVideo.pause();
+
+  const seekFromScroll = (delta) => {
+    if (!heroVideo.duration || Number.isNaN(heroVideo.duration)) return;
+
+    const seekAmount = delta * 0.02; // seconds per pixel
+    heroVideo.currentTime = Math.max(0, Math.min(heroVideo.duration, heroVideo.currentTime + seekAmount));
+  };
+
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+    const scrollDelta = currentScrollY - lastScrollY;
+    lastScrollY = currentScrollY;
+
+    if (scrollDelta === 0) return;
+
+    seekFromScroll(scrollDelta);
+
+    clearTimeout(scrollTimeout);
+    scrollTimeout = window.setTimeout(() => {
+      heroVideo.pause();
+    }, 120);
+  }, { passive: true });
+}
