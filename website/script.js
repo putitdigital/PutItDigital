@@ -163,33 +163,94 @@ document.addEventListener('mouseup', () => {
   cursorEl.classList.remove('water-click');
 });
 
-// Video scrubbing on scroll
-const heroVideo = document.querySelector('.hero-video');
-let scrollTimeout;
-let lastScrollY = window.scrollY;
+// // Video scrubbing on scroll
+// const heroVideo = document.querySelector('.hero-video');
+// let scrollTimeout;
+// let lastScrollY = window.scrollY;
+
+// if (heroVideo) {
+//   heroVideo.pause();
+
+//   const seekFromScroll = (delta) => {
+//     if (!heroVideo.duration || Number.isNaN(heroVideo.duration)) return;
+
+//     const seekAmount = delta * 0.02; // seconds per pixel
+//     heroVideo.currentTime = Math.max(0, Math.min(heroVideo.duration, heroVideo.currentTime + seekAmount));
+//   };
+
+//   window.addEventListener('scroll', () => {
+//     const currentScrollY = window.scrollY;
+//     const scrollDelta = currentScrollY - lastScrollY;
+//     lastScrollY = currentScrollY;
+
+//     if (scrollDelta === 0) return;
+
+//     seekFromScroll(scrollDelta);
+
+//     clearTimeout(scrollTimeout);
+//     scrollTimeout = window.setTimeout(() => {
+//       heroVideo.pause();
+//     }, 120);
+//   }, { passive: true });
+// }
+const heroVideo = document.querySelector(".hero-video");
 
 if (heroVideo) {
   heroVideo.pause();
 
-  const seekFromScroll = (delta) => {
-    if (!heroVideo.duration || Number.isNaN(heroVideo.duration)) return;
+  let targetTime = 0;
+  let currentTime = 0;
+  let ticking = false;
+  let lastScrollY = window.scrollY;
 
-    const seekAmount = delta * 0.02; // seconds per pixel
-    heroVideo.currentTime = Math.max(0, Math.min(heroVideo.duration, heroVideo.currentTime + seekAmount));
+  // Adjust sensitivity
+  const SCROLL_SENSITIVITY = 0.003;
+
+  // Smooth animation loop
+  const animate = () => {
+    // Smooth easing
+    currentTime += (targetTime - currentTime) * 0.1;
+
+    // Prevent tiny jumps
+    if (Math.abs(targetTime - currentTime) < 0.001) {
+      currentTime = targetTime;
+    }
+
+    heroVideo.currentTime = currentTime;
+
+    requestAnimationFrame(animate);
   };
 
-  window.addEventListener('scroll', () => {
-    const currentScrollY = window.scrollY;
-    const scrollDelta = currentScrollY - lastScrollY;
-    lastScrollY = currentScrollY;
+  // Start animation loop
+  animate();
 
-    if (scrollDelta === 0) return;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const currentScrollY = window.scrollY;
+      const scrollDelta = currentScrollY - lastScrollY;
 
-    seekFromScroll(scrollDelta);
+      lastScrollY = currentScrollY;
 
-    clearTimeout(scrollTimeout);
-    scrollTimeout = window.setTimeout(() => {
-      heroVideo.pause();
-    }, 120);
-  }, { passive: true });
+      if (!heroVideo.duration) return;
+
+      targetTime += scrollDelta * SCROLL_SENSITIVITY;
+
+      // Clamp between 0 and duration
+      targetTime = Math.max(
+        0,
+        Math.min(heroVideo.duration, targetTime)
+      );
+
+      // Prevent unnecessary updates
+      if (!ticking) {
+        ticking = true;
+
+        requestAnimationFrame(() => {
+          ticking = false;
+        });
+      }
+    },
+    { passive: true }
+  );
 }
