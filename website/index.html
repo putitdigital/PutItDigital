@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+<DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="PutItDigital builds modern websites with design, development, and hosting support for brands and businesses.">
-  <link rel="icon" href="../photos/favicon.ico">
-  <title>PutItDigital</title>
-  <link rel="stylesheet" href="./style.css">
+    <meta name="description" content="PutItDigital builds modern websites with design, development, and hosting support for brands and businesses.">
+    <link rel="icon" href="../photos/favicon.ico">
+    <title>PutItDigital</title>
+    <link rel="stylesheet" href="./styleTEST.css">
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFRHEEFCH6"></script>
@@ -18,95 +18,44 @@
   gtag('config', 'G-RFRHEEFCH6');
 </script>
 <body>
-  <header class="site-header">
-    <div class="site-brand">
-      <a href="#home">Put It Digital</a>
-    </div>
-    <button class="nav-toggle" aria-controls="site-navigation" aria-expanded="false">
-      <span class="sr-only">Open navigation</span>
-      <span aria-hidden="true">☰</span>
-    </button>
-    <nav id="site-navigation" class="site-nav" aria-label="Primary navigation">
-      <div class="dropdown">
-        <button class="dropdown-button" type="button" aria-haspopup="menu" aria-expanded="false">Products</button>
-        <div class="dropdown-menu" role="menu">
-          <a href="#services">Websites</a>
-          <a href="#contact">Hosting</a>
-          <a href="#about">Support</a>
+    <header class="site-header">
+        <div class="site-brand">
+            <a href="#home">Put It Digital</a>
         </div>
-      </div>
-      <a href="#contact">Contact</a>
-      <a href="#pricing">Pricing</a>
-      <button type="button" class="nav-action">Login</button>
-    </nav>
-  </header>
-
-  <main>
-    <section id="home" class="hero-section">
-      <video class="hero-video" muted loop playsinline>
-        <source src="./images/hero-video.mp4" type="video/mp4">
-      </video>
-      <div class="hero-slider">
-        <div class="hero-slide active" data-slide="1">
-          <div class="hero-copy">
-            <p class="eyebrow">Digital strategy, design & hosting</p>
-            <h1>Build bold, modern websites that grow your business.</h1>
-            <p class="hero-text">PutItDigital creates websites with clear messaging, polished design, and reliable hosting so your brand looks great online and converts visitors to customers.</p>
-          </div>
-          <div class="hero-panel">
-            <div class="hero-card">
-              <h2>What we deliver</h2>
-              <ul>
-                <li>Responsive websites designed for conversion</li>
-                <li>Fast performance and reliable hosting</li>
-                <li>Clear branding with digital-first visuals</li>
-              </ul>
+        <button class="nav-toggle" aria-controls="site-navigation" aria-expanded="false">
+            <span class="sr-only">Open navigation</span>
+            <span aria-hidden="true">☰</span>
+        </button>
+        <nav id="site-navigation" class="site-nav" aria-label="Primary navigation">
+            <a href="#contact">Products</a>
+            <a href="#contact">Contact</a>
+            <a href="#pricing">Pricing</a>
+            <button type="button" class="nav-action">Login</button>
+        </nav>  
+    </header>
+    <main>
+        <section id="home" class="hero-section">
+            <div class="sticky-container" id="stickyContainer">
+                <div class="hero-copy" id="heroCopy">
+                    <div class="hero-heading">
+                        <h1>Welcome to PutItDigital</h1>
+                    </div>
+                    <div class="hero-description">
+                        <p>We build modern websites with design, development, and hosting support for brands and businesses.</p>
+                    </div>
+                </div>  
+                <div class="webgl-section" id="webglSection">
+                <div class="canvas-container" id="canvasContainer">
+                    <canvas id="space"></canvas>
+                    <div class="animated-text" id="animatedText">
+                    PUT<br />IT<br />DIGITAL
+                    </div>
+                </div>
+                </div>
             </div>
-          </div>
-        </div>
-
-        <div class="hero-slide" data-slide="2">
-          <div class="hero-copy">
-            <p class="eyebrow">Managed hosting and uptime</p>
-            <h1>Keep your website secure, fast, and always available.</h1>
-            <p class="hero-text">Our hosting service includes performance monitoring, SSL, automated backups, and maintenance so your business stays online without extra hassle.</p>
-          </div>
-          <div class="hero-panel">
-            <div class="hero-card">
-              <h2>Hosting advantages</h2>
-              <ul>
-                <li>Managed setup with automatic backups</li>
-                <li>Fast CDN delivery and SSL security</li>
-                <li>Responsive support for future updates</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-slider-dots" aria-label="Hero slider navigation">
-        <button class="slider-dot active" data-slide="1" aria-label="Slide 1"></button>
-        <button class="slider-dot" data-slide="2" aria-label="Slide 2"></button>
-      </div>
-    </section>
-
-
-    <section id="contact" class="section contact-section">
-      <div class="section-intro">
-        <span class="section-label">Contact</span>
-        <h2>Ready to put your brand online?</h2>
-        <p>Get in touch to start your website project, discuss hosting, or request a design proposal.</p>
-      </div>
-      <div class="contact-card">
-        <p>Email:</p>
-        <a href="mailto:sithembiso.sangweni@putitdigital.co.za">sithembiso.sangweni@putitdigital.co.za</a>
-        <p>Phone:</p>
-        <a href="tel:+27672254116">+27 67 225 4116</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
+        </section>
+    </main>
+    <footer class="site-footer">
     <p>© 2026 PutItDigital. Built for clarity, speed, and easy updates.</p>
   </footer>
 
@@ -144,7 +93,9 @@
       </div>
     </div>
   </div>
-  <div class="ai-backdrop" aria-hidden="true"></div>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
   <script src="./script.js"></script>
 </body>
 </html>
+

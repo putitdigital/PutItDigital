@@ -1,67 +1,224 @@
-const navToggle = document.querySelector('.nav-toggle');
-const nav = document.getElementById('site-navigation');
-const dropdownButton = document.querySelector('.dropdown-button');
-const dropdown = document.querySelector('.dropdown');
-
-// Slider elements
-const slides = document.querySelectorAll('.hero-slide');
-const dots = document.querySelectorAll('.slider-dot');
-let currentSlide = 0;
-let slideTimer;
-
-if (navToggle && nav) {
-  navToggle.addEventListener('click', () => {
-    const isOpen = nav.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', String(isOpen));
-  });
-}
-
-if (dropdownButton && dropdown) {
-  dropdownButton.addEventListener('click', () => {
-    const isOpen = dropdown.classList.toggle('open');
-    dropdownButton.setAttribute('aria-expanded', String(isOpen));
-  });
-
-  document.addEventListener('click', (event) => {
-    if (!dropdown.contains(event.target) && !dropdownButton.contains(event.target)) {
-      dropdown.classList.remove('open');
-      dropdownButton.setAttribute('aria-expanded', 'false');
-    }
-  });
-}
-
-function setSlide(index) {
-  if (!slides.length) return;
-  slides.forEach((s, i) => s.classList.toggle('active', i === index));
-  dots.forEach((d, i) => d.classList.toggle('active', i === index));
-  currentSlide = index;
-}
-
-function advanceSlide() {
-  const next = (currentSlide + 1) % slides.length;
-  setSlide(next);
-}
-
-function startSlideTimer() {
-  clearInterval(slideTimer);
-  slideTimer = setInterval(advanceSlide, 7000);
-}
-
-if (dots.length && slides.length) {
-  dots.forEach((dot, idx) => dot.addEventListener('click', () => {
-    setSlide(idx);
-    startSlideTimer();
-  }));
-
-  const sliderEl = document.querySelector('.hero-slider');
-  if (sliderEl) {
-    sliderEl.addEventListener('mouseenter', () => clearInterval(slideTimer));
-    sliderEl.addEventListener('mouseleave', startSlideTimer);
+// Setup canvas and context
+const canvas = document.getElementById("space");
+const ctx = canvas.getContext("2d");
+canvas.width = canvas.offsetWidth;
+canvas.height = canvas.offsetHeight;
+// Starfield settings
+const numStars = 1900;
+const focalLength = canvas.width * 2;
+let centerX = canvas.width / 2;
+let centerY = canvas.height / 2;
+const baseTrailLength = 2;
+const maxTrailLength = 30;
+// Stars array
+let stars = [];
+// Animation control
+let warpSpeed = 0;
+let animationActive = true;
+// Initialize stars
+function initializeStars() {
+  stars = [];
+  for (let i = 0; i < numStars; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      z: Math.random() * canvas.width,
+      o: 0.5 + Math.random() * 0.5,
+      trail: []
+    });
   }
-
-  setSlide(0);
-  startSlideTimer();
 }
+// Update star positions
+function moveStars() {
+  for (let i = 0; i < stars.length; i++) {
+    const star = stars[i];
+    // Move star based on warp speed - always forward
+    const speed = 1 + warpSpeed * 50;
+    star.z -= speed;
+    // Reset star position when it passes the viewer
+    if (star.z < 1) {
+      star.z = canvas.width;
+      star.x = Math.random() * canvas.width;
+      star.y = Math.random() * canvas.height;
+      star.trail = [];
+    }
+  }
+}
+// Draw stars and their trails
+function drawStars() {
+  // Resize canvas if needed
+  if (
+    canvas.width !== canvas.offsetWidth ||
+    canvas.height !== canvas.offsetHeight
+  ) {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    centerX = canvas.width / 2;
+    centerY = canvas.height / 2;
+  }
+  // Calculate trail length based on warp speed
+  const trailLength = Math.floor(
+    baseTrailLength + warpSpeed * (maxTrailLength - baseTrailLength)
+  );
+  // Clear canvas with fade effect based on warp speed
+  const clearAlpha = 1 - warpSpeed * 0.8;
+  ctx.fillStyle = `rgba(17,17,17,${clearAlpha})`;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  // Draw stars and trails
+  for (let i = 0; i < stars.length; i++) {
+    const star = stars[i];
+    // Calculate screen position with perspective
+    const px = (star.x - centerX) * (focalLength / star.z) + centerX;
+    const py = (star.y - centerY) * (focalLength / star.z) + centerY;
+    // Add position to trail
+    star.trail.push({
+      x: px,
+      y: py
+    });
+    if (star.trail.length > trailLength) {
+      star.trail.shift();
+    }
+    // Draw trail
+    if (star.trail.length > 1) {
+      ctx.beginPath();
+      ctx.moveTo(star.trail[0].x, star.trail[0].y);
+      for (let j = 1; j < star.trail.length; j++) {
+        ctx.lineTo(star.trail[j].x, star.trail[j].y);
+      }
+      ctx.strokeStyle = `rgba(209,255,255,${star.o})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+    // Draw star
+    ctx.fillStyle = `rgba(209,255,255,${star.o})`;
+    ctx.font = "30px Arial";
+    ctx.fillRect(px, py, 1, 1);
+  }
+}
+// Animation loop
+function animate() {
+  if (animationActive) {
+    requestAnimationFrame(animate);
+    moveStars();
+    drawStars();
+  }
+}
+// Initialize and start animation
+initializeStars();
+animate();
+// GSAP ScrollTrigger setup
+gsap.registerPlugin(ScrollTrigger);
+// Create a timeline for the warp effect
+const warpTimeline = gsap.timeline({
+  scrollTrigger: {
+    trigger: "#stickyContainer",
+    start: "top top",
+    end: "bottom top",
+    scrub: true,
+    onUpdate: (self) => {
+      const progress = self.progress;
+      // 0-300vh (0-60%): Ramp up warp effect
+      if (progress <= 0.6) {
+        warpSpeed = progress / 0.6; // 0 to 1
+      }
+      // 300-400vh (60-80%): Maintain full warp
+      else if (progress <= 0.8) {
+        warpSpeed = 1; // Full warp
+      }
+      // 400-500vh (80-100%): Decrease warp effect
+      else {
+        warpSpeed = 1 - (progress - 0.8) / 0.2; // 1 to 0
+      }
+    }
+  }
+});
+// Enhanced text animation with blur and better easing
+const textTimeline = gsap.timeline({
+  scrollTrigger: {
+    trigger: "#stickyContainer",
+    start: "12% top", // Start slightly earlier for a longer animation
+    end: "20% top", // End a bit later for a smoother animation
+    scrub: 0.8 // Add slight smoothing to the scrub for more natural movement
+  }
+});
+// Add enhanced text animation with multi-step sequence
+textTimeline.to("#animatedText", {
+  opacity: 1, // Full opacity
+  y: 0, // Final position
+  filter: "blur(0px)", // No blur
+  duration: 0.4,
+  ease: "power3.out" // Ease out for a soft landing
+});
+// Create a timeline for the exit effect
+const exitTimeline = gsap.timeline({
+  scrollTrigger: {
+    trigger: "#stickyContainer",
+    start: "bottom 20%", // Start when the bottom of the container is 20% from the top
+    end: "bottom -10%", // End when it's 10% past the top
+    scrub: true
+  }
+});
+// Add heroCopy exit animation with blur and better easing
+exitTimeline.to(
+  "#heroCopy",
+  {
+    opacity: 0,
+    y: -20,
+    duration: 0.4,
+    scale: 0.95,
+    ease: "power2.in"
+  },
+  0
+);
+// Add enhanced exit animations with blur
+exitTimeline.to(
+  "#animatedText",
+  {
+    opacity: 0,
+    y: -20,
+    filter: "blur(8px)",
+    duration: 0.4,
+    ease: "power2.in"
+  },
+  0
+);
+exitTimeline.to(
+  "#webglSection",
+  {
+    opacity: 0,
+    scale: 0.95,
+    ease: "power2.inOut"
+  },
+  0.1
+); // Slight delay after text starts fading
+
+// Handle visibility - stop animation when out of view
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      // Only run animation when section is visible
+      if (entry.isIntersecting) {
+        if (!animationActive) {
+          animationActive = true;
+          animate();
+        }
+      } else {
+        animationActive = false;
+      }
+    });
+  },
+  {
+    threshold: 0
+  }
+);
+observer.observe(document.getElementById("stickyContainer"));
+// Handle window resize
+window.addEventListener("resize", () => {
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+  centerX = canvas.width / 2;
+  centerY = canvas.height / 2;
+});
 
 // AI popup
 const aiBadge = document.querySelector('.ai-badge');
@@ -162,95 +319,3 @@ document.addEventListener('mousedown', (event) => {
 document.addEventListener('mouseup', () => {
   cursorEl.classList.remove('water-click');
 });
-
-// // Video scrubbing on scroll
-// const heroVideo = document.querySelector('.hero-video');
-// let scrollTimeout;
-// let lastScrollY = window.scrollY;
-
-// if (heroVideo) {
-//   heroVideo.pause();
-
-//   const seekFromScroll = (delta) => {
-//     if (!heroVideo.duration || Number.isNaN(heroVideo.duration)) return;
-
-//     const seekAmount = delta * 0.02; // seconds per pixel
-//     heroVideo.currentTime = Math.max(0, Math.min(heroVideo.duration, heroVideo.currentTime + seekAmount));
-//   };
-
-//   window.addEventListener('scroll', () => {
-//     const currentScrollY = window.scrollY;
-//     const scrollDelta = currentScrollY - lastScrollY;
-//     lastScrollY = currentScrollY;
-
-//     if (scrollDelta === 0) return;
-
-//     seekFromScroll(scrollDelta);
-
-//     clearTimeout(scrollTimeout);
-//     scrollTimeout = window.setTimeout(() => {
-//       heroVideo.pause();
-//     }, 120);
-//   }, { passive: true });
-// }
-const heroVideo = document.querySelector(".hero-video");
-
-if (heroVideo) {
-  heroVideo.pause();
-
-  let targetTime = 0;
-  let currentTime = 0;
-  let ticking = false;
-  let lastScrollY = window.scrollY;
-
-  // Adjust sensitivity
-  const SCROLL_SENSITIVITY = 0.003;
-
-  // Smooth animation loop
-  const animate = () => {
-    // Smooth easing
-    currentTime += (targetTime - currentTime) * 0.1;
-
-    // Prevent tiny jumps
-    if (Math.abs(targetTime - currentTime) < 0.001) {
-      currentTime = targetTime;
-    }
-
-    heroVideo.currentTime = currentTime;
-
-    requestAnimationFrame(animate);
-  };
-
-  // Start animation loop
-  animate();
-
-  window.addEventListener(
-    "scroll",
-    () => {
-      const currentScrollY = window.scrollY;
-      const scrollDelta = currentScrollY - lastScrollY;
-
-      lastScrollY = currentScrollY;
-
-      if (!heroVideo.duration) return;
-
-      targetTime += scrollDelta * SCROLL_SENSITIVITY;
-
-      // Clamp between 0 and duration
-      targetTime = Math.max(
-        0,
-        Math.min(heroVideo.duration, targetTime)
-      );
-
-      // Prevent unnecessary updates
-      if (!ticking) {
-        ticking = true;
-
-        requestAnimationFrame(() => {
-          ticking = false;
-        });
-      }
-    },
-    { passive: true }
-  );
-}
