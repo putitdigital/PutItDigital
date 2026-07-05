@@ -1,101 +1,12 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="PutItDigital builds modern websites with design, development, and hosting support for brands and businesses.">
-    <link rel="icon" href="../photos/favicon.ico">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PutItDigital</title>
-    <link rel="stylesheet" href="./styleTEST.css">
-</head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RFRHEEFCH6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-RFRHEEFCH6');
-</script>
-<body>
-    <header class="site-header">
-        <div class="site-brand">
-            <a href="#home">Put It Digital</a>
-        </div>
-        <button class="nav-toggle" aria-controls="site-navigation" aria-expanded="false">
-            <span class="sr-only">Open navigation</span>
-            <span aria-hidden="true">☰</span>
-        </button>
-        <nav id="site-navigation" class="site-nav" aria-label="Primary navigation">
-            <a href="#contact">Products</a>
-            <a href="#contact">Contact</a>
-            <a href="#pricing">Pricing</a>
-            <button type="button" class="nav-action">Login</button>
-        </nav>  
-    </header>
-    <main>
-        <section id="home" class="hero-section">
-            <div class="sticky-container" id="stickyContainer">
-                <div class="hero-copy" id="heroCopy">
-                    <div class="hero-heading">
-                        <h1>Welcome to PutItDigital</h1>
-                    </div>
-                    <div class="hero-description">
-                        <p>We build modern websites with design, development, and hosting support for brands and businesses.</p>
-                    </div>
-                </div>  
-                <div class="webgl-section" id="webglSection">
-                <div class="canvas-container" id="canvasContainer">
-                    <canvas id="space"></canvas>
-                    <div class="animated-text" id="animatedText">
-                    PUT<br />IT<br />DIGITAL
-                    </div>
-                </div>
-                </div>
-            </div>
-        </section>
-    </main>
-    <footer class="site-footer">
-    <p>© 2026 PutItDigital. Built for clarity, speed, and easy updates.</p>
-  </footer>
-
-  <div class="ai-badge" aria-label="PutItDigital AI assistant" role="button" tabindex="0">
-    <span class="badge-icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <path d="M4 4c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v11c0 1.1-.9 2-2 2H8.5L5 21V4z" fill="currentColor"/>
-        <circle cx="18" cy="6" r="1.6" fill="var(--accent)" />
-      </svg>
-    </span>
-    <span class="badge-label">AI</span>
-    <span class="badge-tooltip" role="tooltip">Chat with our AI assistant</span>
-  </div>
-
-  <div class="ai-popup" role="dialog" aria-modal="true" aria-labelledby="ai-popup-title" aria-hidden="true">
-    <div class="ai-popup-inner">
-      <div class="ai-popup-header">
-        <div>
-          <span class="ai-popup-title" id="ai-popup-title">PutItDigital AI</span>
-          <p class="ai-popup-subtitle">Ask us about websites, hosting, or support.</p>
-        </div>
-        <button class="ai-popup-close" aria-label="Close AI chat">×</button>
-      </div>
-      <div class="ai-popup-body">
-        <div class="ai-popup-messages" aria-live="polite">
-          <div class="ai-message ai-message--assistant">Hi there! I can help you explore our services, answer questions about hosting, or suggest next steps for your website.</div>
-        </div>
-        <form class="ai-popup-form" autocomplete="off">
-          <label class="ai-popup-label" for="ai-input">Your question</label>
-          <div class="ai-popup-input-wrap">
-            <input id="ai-input" class="ai-popup-input" type="text" placeholder="Type your question here..." required />
-            <button class="button primary ai-popup-submit" type="submit">Send</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
-  <script src="./script.js"></script>
-</body>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./main.jsx"></script>
+  </body>
 </html>
-

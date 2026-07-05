@@ -1,0 +1,19 @@
+src/
+│
+├── assets/
+│    ├── logo.svg
+│    ├── hero.png
+│
+├── components/
+│    ├── Navbar.jsx
+│    ├── Hero.jsx
+│    ├── Services.jsx
+│    ├── Technologies.jsx
+│    ├── Projects.jsx
+│    ├── Process.jsx
+│    ├── CTA.jsx
+│    └── Footer.jsx
+│
+├── App.jsx
+├── App.css
+└── main.jsx
