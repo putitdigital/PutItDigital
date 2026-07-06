@@ -1,9 +1,19 @@
+
 /* ===========================
    GOOGLE FONT
 =========================== */
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.cdnfonts.com/css/thegoodmonolith");
 
+@font-face {
+  font-family: "PP Neue Montreal";
+  src: url("https://fonts.cdnfonts.com/s/64587/PPNeueMontreal-Medium.woff2")
+    format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
 /* ===========================
    RESET
 =========================== */
@@ -19,10 +29,11 @@ html {
 }
 
 body {
-    font-family: "Inter", sans-serif;
+    font-family: "TheGoodMonolith", sans-serif;;
     background: #050816;
     color: white;
     overflow-x: hidden;
+    cursor: default;
 }
 
 /* ===========================
@@ -33,10 +44,9 @@ body::before {
     content: "";
     position: fixed;
     inset: 0;
-    background:
-        radial-gradient(circle at top left, #4f46e5 0%, transparent 40%),
-        radial-gradient(circle at bottom right, #06b6d4 0%, transparent 40%),
-        radial-gradient(circle at center, #111827 0%, #050816 70%);
+
+    background: linear-gradient(90deg, #000000, #ffffff);
+
     z-index: -2;
 }
 
@@ -47,6 +57,23 @@ body::after {
     backdrop-filter: blur(80px);
     z-index: -1;
 }
+.slider{
+    position:relative;
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+}
+
+.slider section{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
 
 /* ===========================
    NAVBAR
@@ -54,24 +81,18 @@ body::after {
 
 .navbar {
     position: fixed;
-    top: 0;
+    bottom: 60px;
     left: 0;
-
     width: 100%;
-
     display: flex;
-    justify-content: space-between;
     align-items: center;
-
-    padding: 22px 8%;
-
-    background: rgba(255,255,255,.04);
-
-    backdrop-filter: blur(18px);
-
-    border-bottom: 1px solid rgba(255,255,255,.08);
-
+    padding: 16px 8%;
+    /* background: rgba(255, 255, 255, .04); */
+    /* backdrop-filter: blur(18px); */
     z-index: 999;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
+    flex-direction: row;
 }
 
 .logo {
@@ -89,10 +110,12 @@ nav {
 }
 
 nav a {
-    color: white;
+    -webkit-text-stroke: white 0.3px;
+    color: #ffffff00;
     text-decoration: none;
     transition: .3s;
-    font-weight: 500;
+    font-weight: 400;
+    font-size: 17px;
 }
 
 nav a:hover {
@@ -109,28 +132,26 @@ nav a:hover {
 
     cursor: pointer;
 
-    color: white;
-
+    
+      color: #ffffff;
     font-size: 15px;
 
     padding: 14px 28px;
 
     border-radius: 50px;
 
-    background: linear-gradient(
-        135deg,
-        #2563eb,
-        #06b6d4
-    );
-
+    background: linear-gradient(90deg, #000000, #393939);
     transition: .35s;
+ 
 }
 
 .btn-primary:hover {
+    color: #710000;
+    transform: translateX(-5px);
+    background: linear-gradient(90deg, #000000, #39393900);
+    box-shadow: inset 20px 0px 13px 0px rgb(255 0 0 / 35%);
 
-    transform: translateY(-5px);
-
-    box-shadow: 0 20px 40px rgba(37,99,235,.35);
+    
 
 }
 
@@ -176,6 +197,25 @@ nav a:hover {
 
     gap:60px;
 
+    position:relative;
+
+    color:#ffffff;
+    height:100vh;
+    z-index:1;
+    
+
+}
+#root{
+    background-image: linear-gradient(94deg, rgb(0 0 0), rgb(0 0 0 / 62%)), url(/assets/hero.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.services{
+    position: relative;
+    z-index: 5;
+
 }
 
 .hero-left{
@@ -191,7 +231,38 @@ nav a:hover {
     display:flex;
 
     justify-content:center;
+}
 
+/* ===========================
+     PAGE LAYOUT
+     Stack sections vertically for normal up/down scrolling
+=========================== */
+
+.h-scroll{
+    position:relative;
+    width:100%;
+    overflow:hidden;
+}
+
+.h-scroll section{
+    position:relative;
+    width:100%;
+    min-height:100vh;
+    overflow:hidden;
+}
+
+/* Make sure fixed elements (navbar/footer) remain visible */
+.navbar { z-index: 40;}
+
+@media (max-width: 800px) {
+    .h-scroll > * { min-width: 100%; }
+}
+
+/* Disable fixed background on touch devices where performance or support is limited */
+@media (hover: none) and (pointer: coarse) {
+    .hero {
+        background-attachment: scroll;
+    }
 }
 
 .tag{
@@ -299,9 +370,11 @@ nav a:hover {
 =========================== */
 
 section{
-
+    position:relative;
+    width:100%;
+    min-height:100vh;
     padding:120px 8%;
-
+    overflow:hidden;
 }
 
 section h2{
@@ -458,20 +531,24 @@ section h2{
 
 .footer{
 
-    padding:60px;
+    padding:0px;
 
     text-align:center;
 
     border-top:1px solid rgba(255,255,255,.08);
 
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+    z-index: 999;
+
 }
 
-.footer p{
-
-    margin:20px 0;
-
-    color:#9ca3af;
-
+footer p {
+    margin: 7px 0;
+    color: #9ca3af;
 }
 
 /* ===========================

@@ -1,9 +1,6 @@
 function Footer() {
   return (
     <footer className="footer">
-
-      <h3>Put It Digital</h3>
-
       <p>
         Software Development • AI • Automation • Mobile Apps
       </p>
