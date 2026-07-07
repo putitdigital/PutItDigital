@@ -11,6 +11,9 @@ function Hero() {
           <br />
           Scale Without Limits.
         </h1>
+        <p>
+          Software Development • AI • Automation • Mobile Apps
+        </p>
 {/* 
         <p className="subtitle">
           We build websites, mobile applications,

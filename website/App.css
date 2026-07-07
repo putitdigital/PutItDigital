@@ -30,7 +30,7 @@ html {
 
 body {
     font-family: "TheGoodMonolith", sans-serif;;
-    background: #050816;
+    background: black;
     color: white;
     overflow-x: hidden;
     cursor: default;
@@ -45,7 +45,7 @@ body::before {
     position: fixed;
     inset: 0;
 
-    background: linear-gradient(90deg, #000000, #ffffff);
+    background: black;
 
     z-index: -2;
 }
@@ -93,6 +93,7 @@ body::after {
     justify-content: space-evenly;
     flex-wrap: nowrap;
     flex-direction: row;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .logo {
@@ -110,8 +111,7 @@ nav {
 }
 
 nav a {
-    -webkit-text-stroke: white 0.3px;
-    color: #ffffff00;
+    color: #ffffff;
     text-decoration: none;
     transition: .3s;
     font-weight: 400;
@@ -129,27 +129,21 @@ nav a:hover {
 .btn-primary {
 
     border: none;
-
     cursor: pointer;
-
-    
-      color: #ffffff;
+    color: #ffffff;
     font-size: 15px;
-
     padding: 14px 28px;
-
     border-radius: 50px;
-
-    background: linear-gradient(90deg, #000000, #393939);
+    background: linear-gradient(4deg, #000000, #000000);
+    box-shadow: inset -5px -1px 0px 0px rgb(255 0 0);
+    transition: .35s;
     transition: .35s;
  
 }
 
 .btn-primary:hover {
-    color: #710000;
-    transform: translateX(-5px);
-    background: linear-gradient(90deg, #000000, #39393900);
-    box-shadow: inset 20px 0px 13px 0px rgb(255 0 0 / 35%);
+    background: linear-gradient(4deg, #000000, #000000);
+    box-shadow: inset 5px 1px 0px 0px rgb(255 0 0);
 
     
 
@@ -530,12 +524,12 @@ section h2{
 =========================== */
 
 .footer{
-
-    padding:0px;
+    margin: 0px 20px 0px 20px;
+    padding:20px 0px;
 
     text-align:center;
 
-    border-top:1px solid rgba(255,255,255,.08);
+    border-top:0.5px solid rgba(255, 255, 255, 0.128);
 
     position: fixed;
     bottom: 0;
