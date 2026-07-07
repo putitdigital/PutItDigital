@@ -1,6 +1,6 @@
 function Process() {
   return (
-    <section className="process">
+    <section id="process" className="process">
 
       <h2>How We Work</h2>
 

@@ -1,4 +1,27 @@
+import { useEffect } from "react";
+import api from "../api/api";
 function Hero() {
+  useEffect(() => {
+
+        async function load() {
+
+            try {
+
+                const response = await api.get("/users");
+
+                console.log(response.data);
+
+            } catch (err) {
+
+                console.log(err);
+
+            }
+
+        }
+
+        load();
+
+    }, []);
   return (
     <section id="hero" className="hero">
 
@@ -12,26 +35,8 @@ function Hero() {
           Scale Without Limits.
         </h1>
         <p>
-          Software Development • AI • Automation • Mobile Apps
+          Put It Digital
         </p>
-{/* 
-        <p className="subtitle">
-          We build websites, mobile applications,
-          AI solutions and business systems that help
-          companies grow through automation and modern
-          technology.
-        </p>
-
-        <div className="hero-buttons">
-          <button className="btn-primary">
-            Start Your Project
-          </button>
-
-          <button className="btn-secondary">
-            View Portfolio
-          </button>
-        </div> */}
-
       </div>
 
     </section>

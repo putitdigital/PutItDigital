@@ -1,0 +1,31 @@
+{
+    "tables": {
+        "user": {
+            "columns": [
+                "name",
+                "email",
+                "password"
+            ],
+            "action":[
+                "create",
+                "read",
+                "findByEmail",
+                "update",
+                "delete"
+            ]
+        },"product": {
+            "columns": [
+                "name",
+                "description",
+                "price"
+            ],
+            "action":[
+                "create",
+                "read",
+                "findByEmail",
+                "update",
+                "delete"
+            ]
+        }
+    }
+}

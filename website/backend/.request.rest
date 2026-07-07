@@ -1,0 +1,73 @@
+
+GET http://localhost:8080/api/users
+
+###
+
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+    "name": "sithe",
+    "email": "sithe@gmail.com",
+    "number": "08453889543",
+    "password": "123456"
+}
+
+###
+DELETE http://localhost:8080/api/users/6
+
+###
+
+PUT http://localhost:8080/api/users/7
+Content-Type: application/json
+
+{
+    "name": "John",
+    "email": "John@gmail.com",
+    "number": "08453889543",
+    "password": "123456"
+}
+
+###
+
+POST http://localhost:8080/api/login
+Content-Type: application/json
+
+{
+    "name": "sithe",
+    "email": "sithe@gmail.com",
+    "number": "08453889543",
+    "password": "123456"
+
+}
+
+###
+
+# Refresh token (uses existing auth cookie)
+POST http://localhost:8080/api/refresh-token
+Content-Type: application/json
+
+# No request body required. The server reads the 'auth_token' cookie and returns a refreshed cookie.
+
+### Front-end examples
+
+// Browser fetch (sends cookies when credentials: 'include')
+fetch('http://localhost:8080/api/refresh-token', {
+  method: 'POST',
+  credentials: 'include', // send cookies
+  headers: { 'Content-Type': 'application/json' }
+})
+  .then(res => res.json())
+  .then(console.log)
+  .catch(console.error);
+
+// Axios (browser) - ensure axios is loaded/imported
+axios.post('http://localhost:8080/api/refresh-token', {}, { withCredentials: true })
+  .then(res => console.log(res.data))
+  .catch(console.error);
+
+# curl using a cookie jar: stores and sends cookies between calls
+curl -c cookies.txt -b cookies.txt -X POST http://localhost:8080/api/refresh-token
+
+
+          

@@ -17,12 +17,7 @@ const services = [
   {
     title: "Web Applications",
     description:
-      "React, Next.js and enterprise portals."
-  },
-  {
-    title: "REST APIs",
-    description:
-      "Express.js, ASP.NET Core and integrations."
+      "We turn outdated websites into modern websites."
   },
   {
     title: "Cloud Deployment",

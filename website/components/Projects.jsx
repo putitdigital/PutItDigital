@@ -5,12 +5,12 @@ function Projects() {
       className="projects"
     >
 
-      <h2>Featured Projects</h2>
+      <h2>Trusted By</h2>
 
       <div className="grid">
 
         <div className="card">
-          <h3>Express API Generator</h3>
+          <h3>Project</h3>
           <p>
             Generate complete Express APIs automatically.
           </p>

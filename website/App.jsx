@@ -1,4 +1,12 @@
 import { useState } from "react";
+import "./App.css";
+
+// Hooks
+import usePreloader from "./hooks/usePreloader";
+import useScrollAnimations from "./hooks/useScrollAnimations";
+
+// Components
+import Preloader from "./components/Preloader";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
@@ -8,48 +16,77 @@ import Process from "./components/Process";
 import CTA from "./components/CTA";
 import Footer from "./components/Footer";
 import Dashboard from "./components/Dashboard";
-import "./App.css";
-
-import useScrollAnimations from "./hooks/useScrollAnimations";
-import useSectionSnap from "./hooks/useSectionSnap";
+import api from "./api/api";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
 
-  // Only enable GSAP when showing the landing page
-  useScrollAnimations(!isLoggedIn);
-//   useSectionSnap(!isLoggedIn);
+  const loading = usePreloader();
+  useScrollAnimations(!loading && !isLoggedIn);
+
+  const handleLogin = async () => {
+    const email = window.prompt("Email");
+    if (!email) return;
+
+    const password = window.prompt("Password");
+    if (!password) return;
+
+    setIsLoggingIn(true);
+
+    try {
+      const response = await api.post("/login", { email, password });
+      if (response.status === 200) {
+        setIsLoggedIn(true);
+      } else {
+        window.alert("Invalid email or password");
+      }
+    } catch (error) {
+      const message = error?.response?.data?.error || "Login failed";
+      window.alert(message);
+    } finally {
+      setIsLoggingIn(false);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await api.post("/logout");
+    } catch (error) {
+      console.error("Logout failed", error);
+    } finally {
+      setIsLoggedIn(false);
+    }
+  };
+
+  if (loading) {
+    return <Preloader />;
+  }
 
   return (
     <>
       <Navbar
         isLoggedIn={isLoggedIn}
-        onLogin={() => setIsLoggedIn(true)}
-        onLogout={() => setIsLoggedIn(false)}
+        isLoggingIn={isLoggingIn}
+        onLogin={handleLogin}
+        onLogout={handleLogout}
       />
 
       {isLoggedIn ? (
         <Dashboard />
       ) : (
-        // <div id="h-scroll" className="h-scroll">
-        //   <Hero />
-        //   <Services />
-        //   <Technologies />
-        //   <Projects />
-        //   <Process />
-        //   <CTA />
-        // </div>
-        <div className="slider">
+        <>
+          <main className="slider">
             <Hero />
             <Services />
-            <Technologies />
-            <Projects />
             <Process />
+            <Projects />
             <CTA />
-        </div>
-      )}
+          </main>
 
-      <Footer />
+          <Footer />
+        </>
+      )}
     </>
   );
 }
