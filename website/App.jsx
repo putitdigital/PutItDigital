@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import "./components/ChatBot/ChatBot.css";
 
 // Hooks
 import usePreloader from "./hooks/usePreloader";
@@ -17,6 +18,8 @@ import CTA from "./components/CTA";
 import Footer from "./components/Footer";
 import Dashboard from "./components/Dashboard";
 import api from "./api/api";
+import ChatBot from "./components/ChatBot/ChatBot";
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -77,6 +80,7 @@ function App() {
       ) : (
         <>
           <main className="slider">
+            <ChatBot/>
             <Hero />
             <Services />
             <Process />

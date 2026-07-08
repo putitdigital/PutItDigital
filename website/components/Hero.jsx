@@ -1,6 +1,25 @@
-import { useEffect } from "react";
+import { useEffect,useRef, useLayoutEffect } from "react";
 import api from "../api/api";
+import gsap from "gsap";
 function Hero() {
+  const heroRef = useRef();
+
+  useLayoutEffect(() => {
+
+    gsap.fromTo(
+      heroRef.current,
+      {
+        opacity: 0,
+        y:80,
+        transformOrigin: "bottom right"
+      },
+      {
+        opacity: 1,
+        y:0,
+        ease: " back.out(1.7)"
+      }
+    )
+  }, []);
   useEffect(() => {
 
         async function load() {
@@ -23,7 +42,7 @@ function Hero() {
 
     }, []);
   return (
-    <section id="hero" className="hero">
+    <section ref={heroRef} id="hero" className="hero">
 
       <div className="hero-left">
 
