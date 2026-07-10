@@ -2,7 +2,7 @@
 /* ===========================
    GOOGLE FONT
 =========================== */
-
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 @import url("https://fonts.cdnfonts.com/css/thegoodmonolith");
 @import url(https://fonts.googleapis.com/css?family=Julius+Sans+One);
@@ -80,7 +80,7 @@ body::before {
 .navbar {
     position: fixed;
     bottom: 60px;
-    left: 0;
+    /* left: 0; */
     width: 100%;
     display: flex;
     align-items: center;
@@ -88,7 +88,7 @@ body::before {
     /* background: rgba(255, 255, 255, .04); */
     /* backdrop-filter: blur(18px); */
     z-index: 999;
-    justify-content: space-evenly;
+    justify-content: flex-end;
     flex-wrap: nowrap;
     flex-direction: row;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -208,7 +208,9 @@ nav a.active {
 }
 
 .hero-left{
-
+    font-family: "Black Ops One", system-ui;
+    font-weight: 400;
+    font-style: normal;
     flex:1;
 
 }

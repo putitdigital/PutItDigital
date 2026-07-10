@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import "./components/ChatBot/ChatBot.css";
+// import "./components/ChatBot/ChatBot.css";
+import "./components/notification/Notification.css";
 
 // Hooks
 import usePreloader from "./hooks/usePreloader";
@@ -18,7 +19,8 @@ import CTA from "./components/CTA";
 import Footer from "./components/Footer";
 import Dashboard from "./components/Dashboard";
 import api from "./api/api";
-import ChatBot from "./components/ChatBot/ChatBot";
+// import ChatBot from "./components/ChatBot/ChatBot";
+import Notification from "./components/notification/Notification";
 
 
 function App() {
@@ -80,7 +82,7 @@ function App() {
       ) : (
         <>
           <main className="slider">
-            <ChatBot/>
+            <Notification/>
             <Hero />
             <Services />
             <Process />

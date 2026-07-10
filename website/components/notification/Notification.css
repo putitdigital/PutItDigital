@@ -1,0 +1,123 @@
+.Notification-button{
+    position: fixed;
+    top: 52px;
+    right: 99px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #005cff00;
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 99999999999999999999999999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    box-shadow: 3px 1px 0px rgb(255 0 0);
+    transition: .3s;
+
+}
+
+.Notification-button:hover{
+
+transform:scale(1.1);
+
+}
+
+.Notification-window{
+    position: fixed;
+    right: 75px;
+    top: 35px;
+    width: 380px;
+    /* height: 400px; */
+    backdrop-filter: blur(5px);
+    border-radius: 30px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    /* box-shadow: inset -1px 25px 0px rgb(47 0 0); */
+    z-index: 9999;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.Notification-header{
+    padding: 1px 33px;
+    /* background: #10192d; */
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.messages{
+
+flex:1;
+
+padding:0px;
+
+overflow:auto;
+
+
+}
+
+.bot{
+    max-width: 80%;
+    padding: 15px;
+    border-radius: 18px;
+    /* background: #1c2642; */
+    margin-bottom: 15px;
+    /* border-bottom: 1px solid red; */
+    box-shadow: 1px -1px 4px 0px rgb(255 0 0);
+
+}
+
+.user{
+
+margin-left:auto;
+
+background:#005cff;
+
+padding:15px;
+
+border-radius:18px;
+
+max-width:80%;
+
+}
+
+.Notification-input{
+    display: flex;
+    padding: 15px;
+    gap: 10px;
+    /* background: #10192d; */
+    border-top: 0.4px solid #ff000041;
+}
+
+.Notification-input input{
+        flex: 1;
+    background: #1a233d00;
+    border: 0.1px solid #ff000030;
+    padding: 10px;
+    border-radius: 9px;
+    color: white;
+    box-shadow: -5px 0px 0px rgb(255 0 0);
+
+}
+
+.Notification-input button{
+    width: 77px;
+    border: none;
+    border-radius: 20px;
+    background: #005cff00;
+    box-shadow: 3px 1px 0px rgb(255 0 0);
+    color: white;
+    cursor: pointer;
+
+}
+.Notification-input button:hover{
+    transition: 1.0s;
+     box-shadow: -3px 1px 0px rgb(255 0 0);
+}
