@@ -18,6 +18,7 @@ import Process from "./components/Process";
 import CTA from "./components/CTA";
 import Footer from "./components/Footer";
 import Dashboard from "./components/Dashboard";
+import LoginModal from "./components/LoginModal";
 import api from "./api/api";
 // import ChatBot from "./components/ChatBot/ChatBot";
 import Notification from "./components/notification/Notification";
@@ -26,29 +27,43 @@ import Notification from "./components/notification/Notification";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [loginError, setLoginError] = useState("");
+  const [credentials, setCredentials] = useState({ email: "", password: "" });
 
   const loading = usePreloader();
   useScrollAnimations(!loading && !isLoggedIn);
 
-  const handleLogin = async () => {
-    const email = window.prompt("Email");
-    if (!email) return;
+  const openLoginModal = () => {
+    setLoginError("");
+    setLoginOpen(true);
+  };
 
-    const password = window.prompt("Password");
-    if (!password) return;
+  const closeLoginModal = () => {
+    setLoginOpen(false);
+    setLoginError("");
+    setCredentials({ email: "", password: "" });
+  };
 
+  const handleLoginSubmit = async (event) => {
+    event.preventDefault();
+    setLoginError("");
     setIsLoggingIn(true);
 
     try {
-      const response = await api.post("/login", { email, password });
+      const response = await api.post("/login", {
+        email: credentials.email,
+        password: credentials.password,
+      });
       if (response.status === 200) {
         setIsLoggedIn(true);
+        closeLoginModal();
       } else {
-        window.alert("Invalid email or password");
+        setLoginError("Invalid email or password");
       }
     } catch (error) {
       const message = error?.response?.data?.error || "Login failed";
-      window.alert(message);
+      setLoginError(message);
     } finally {
       setIsLoggingIn(false);
     }
@@ -73,16 +88,27 @@ function App() {
       <Navbar
         isLoggedIn={isLoggedIn}
         isLoggingIn={isLoggingIn}
-        onLogin={handleLogin}
+        onLogin={openLoginModal}
         onLogout={handleLogout}
       />
+
+      {loginOpen && (
+        <LoginModal
+          credentials={credentials}
+          onChange={setCredentials}
+          onSubmit={handleLoginSubmit}
+          onClose={closeLoginModal}
+          error={loginError}
+          isSubmitting={isLoggingIn}
+        />
+      )}
 
       {isLoggedIn ? (
         <Dashboard />
       ) : (
         <>
           <main className="slider">
-            <Notification/>
+            <Notification />
             <Hero />
             <Services />
             <Process />

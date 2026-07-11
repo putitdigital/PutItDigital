@@ -27,7 +27,7 @@ export default function NotificationWindow({ setOpen }) {
         )
 
         // Wait 1.5 seconds
-        .to({}, { 
+        .to({}, {
             duration: 1.0,
         })
 
@@ -38,6 +38,9 @@ export default function NotificationWindow({ setOpen }) {
             ease: "power2.out"
         });
 
+        return () => {
+            tl.kill();
+        };
     }, []);
 
     return (
