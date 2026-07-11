@@ -12,7 +12,6 @@ export default function useScrollAnimations(enabled = true) {
     const slider = document.querySelector(".slider");
     if (!slider) return;
 
-        return index >= 0 ? index : -1;
     const sections = gsap.utils.toArray("section", slider);
     if (!sections.length) return;
 
