@@ -1,5 +1,10 @@
 const services = [
   {
+    title: "Web Applications",
+    description:
+      "We turn outdated websites into modern websites."
+  },
+  {
     title: "Custom Software",
     description:
       "Business systems designed around your company."
@@ -14,11 +19,7 @@ const services = [
     description:
       "Android & iOS applications."
   },
-  {
-    title: "Web Applications",
-    description:
-      "We turn outdated websites into modern websites."
-  },
+  
   {
     title: "Cloud Deployment",
     description:

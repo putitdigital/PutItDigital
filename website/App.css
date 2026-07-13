@@ -399,6 +399,7 @@ nav a.active {
 
     border:1px solid rgba(255,255,255,.08);
 
+
     backdrop-filter:blur(20px);
 
     box-shadow:0 20px 80px rgba(0,0,0,.35);
@@ -473,9 +474,8 @@ section h2{
 
 .card{
 
-    background:rgba(255,255,255,.05);
-
     border:1px solid rgba(255,255,255,.08);
+    box-shadow: inset -5px -1px 0px rgb(73 0 0);
 
     border-radius:25px;
 
@@ -491,9 +491,7 @@ section h2{
 
     transform:translateY(-10px);
 
-    border-color:#38bdf8;
-
-    box-shadow:0 25px 60px rgba(56,189,248,.15);
+    box-shadow: inset 0px -5px 0px rgb(173, 0, 0);
 
 }
 

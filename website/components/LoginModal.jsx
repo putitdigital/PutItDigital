@@ -1,3 +1,5 @@
+import { createPortal } from "react-dom";
+
 export default function LoginModal({
   credentials,
   onChange,
@@ -6,7 +8,7 @@ export default function LoginModal({
   error,
   isSubmitting,
 }) {
-  return (
+  const modal = (
     <div className="login-overlay">
       <div className="login-panel">
         <form onSubmit={onSubmit} className="login-form">
@@ -50,4 +52,7 @@ export default function LoginModal({
       </div>
     </div>
   );
+
+  if (typeof document === "undefined") return null;
+  return createPortal(modal, document.body);
 }
