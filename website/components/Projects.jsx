@@ -1,6 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
+// Import images directly so Vite includes them in the build
+import centiaImg from "../assets/projects/centia'sCleaningServices.png";
+import switchImg from "../assets/projects/switch.png";
+import rydermImg from "../assets/projects/ryderm.png";
+import flowitImg from "../assets/projects/flowit.png";
+import oktikImg from "../assets/projects/OKTik.png";
+import mehlokhozImg from "../assets/projects/Mehlokhozi.png";
+
 function Projects() {
   const containerRef = useRef(null);
   const trackRef = useRef(null);
@@ -15,12 +23,12 @@ function Projects() {
   const timelineRef = useRef(null);
 
   const projects = [
-    { name: "Centia's Cleaning Services", image: "assets/projects/centia'sCleaningServices.png" },
-    { name: "switch", image: "assets/projects/switch.png" },
-    { name: "ryderm", image: "assets/projects/ryderm.png" },
-    { name: "FlowIT", image: "assets/projects/flowit.png" },
-    { name: "OKTik", image: "assets/projects/oktik.png" },
-    { name: "Mehlokhozi", image: "assets/projects/mehlokhozi.png" },
+    { name: "Centia's Cleaning Services", image: centiaImg },
+    { name: "switch", image: switchImg },
+    { name: "ryderm", image: rydermImg },
+    { name: "FlowIT", image: flowitImg },
+    { name: "OKTik", image: oktikImg },
+    { name: "Mehlokhozi", image: mehlokhozImg },
   ];
 
   // initialize visible projects (first 5)
