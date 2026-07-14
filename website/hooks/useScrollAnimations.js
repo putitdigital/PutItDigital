@@ -1,4 +1,4 @@
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
@@ -6,6 +6,9 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 export default function useScrollAnimations(enabled = true) {
+  const ctxRef = useRef(null);
+  const navLinksRef = useRef([]);
+
   useLayoutEffect(() => {
     if (!enabled) return;
 
@@ -15,10 +18,15 @@ export default function useScrollAnimations(enabled = true) {
     const sections = gsap.utils.toArray("section", slider);
     if (!sections.length) return;
 
+    // Cleanup any previous context
+    if (ctxRef.current) {
+      ctxRef.current.revert();
+    }
+    ScrollTrigger.getAll().forEach((st) => st.kill());
+
     const sectionCount = sections.length;
     const sliderStartY = slider.getBoundingClientRect().top + window.scrollY;
     const totalScroll = sectionCount * window.innerWidth;
-    let navLinks = [];
 
     const handleNavClick = (event) => {
       const link = event.currentTarget;
@@ -83,15 +91,32 @@ export default function useScrollAnimations(enabled = true) {
         );
       });
 
-      navLinks = Array.from(document.querySelectorAll("nav a[href^='#']"));
-      navLinks.forEach((link) => link.addEventListener("click", handleNavClick));
+      // Remove old listeners
+      navLinksRef.current.forEach((link) => {
+        link.removeEventListener("click", handleNavClick);
+      });
+
+      // Add new listeners
+      navLinksRef.current = Array.from(document.querySelectorAll("nav a[href^='#']"));
+      navLinksRef.current.forEach((link) => link.addEventListener("click", handleNavClick));
 
       ScrollTrigger.refresh();
     }, slider);
 
+    ctxRef.current = ctx;
+
     return () => {
-      navLinks.forEach((link) => link.removeEventListener("click", handleNavClick));
-      ctx.revert();
+      // Remove event listeners
+      navLinksRef.current.forEach((link) => {
+        link.removeEventListener("click", handleNavClick);
+      });
+      navLinksRef.current = [];
+
+      // Cleanup GSAP
+      if (ctxRef.current) {
+        ctxRef.current.revert();
+        ctxRef.current = null;
+      }
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, [enabled]);
