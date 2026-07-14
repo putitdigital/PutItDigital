@@ -14,17 +14,17 @@ function CTA() {
         Let's turn your idea into a scalable digital product.
       </p>
       <div className="cta-contact">
-        <form action="https://formspree.io/f/mnqvydqv" method="POST">
-          <input type="text" placeholder="Enter your name" />
-          <input type="email" placeholder="Enter your email" />
-          <textarea placeholder="Enter your message"></textarea>
-          <button className="btn-primary">
+        <form action="./connect.php" id="contact" name="emailContact" method="post">
+          <input name="firstName" required type="text" placeholder="Enter your name" />
+          <input name="email" required type="email" placeholder="Enter your email" />
+          <textarea name="message" required placeholder="Enter your message"></textarea>
+          <button name="send" value="1" className="btn-primary">
             Send
           </button>
         </form>
         <div className="cta-contact-info">
           <p>
-            <strong>Email:</strong> info@putitdigital.com
+            <strong>Email:</strong> info@putitdigital.co.za
           </p>
           <p>
             <strong>Phone:</strong> +27 84 538 8953
