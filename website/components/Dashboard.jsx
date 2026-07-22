@@ -1,28 +1,44 @@
-function Dashboard() {
+import { useState } from "react";
+import Navbardash from "./Navbardash";
+import DashboardHome from "./DashboardPages/DashboardHome";
+import UsersPage from "./DashboardPages/UsersPage";
+import ProjectsPage from "./DashboardPages/ProjectsPage";
+import SettingsPage from "./DashboardPages/SettingsPage";
+import "./Dashboard.css";
+
+function Dashboard({ isLoggedIn, isLoggingIn, onLogin, onLogout}) {
+  const [activeTab, setActiveTab] = useState("home");
+
+  const renderPage = () => {
+    switch (activeTab) {
+      case "home":
+        return <DashboardHome />;
+      case "users":
+        return <UsersPage />;
+      case "projects":
+        return <ProjectsPage />;
+      case "settings":
+        return <SettingsPage />;
+      default:
+        return <DashboardHome />;
+    }
+  };
+
   return (
-    <main className="dashboard-page">
-      <section className="dashboard-hero">
-        <h1>Welcome back</h1>
-        <p>Here is your dashboard overview and quick access to your active work.</p>
-      </section>
-
-      <section className="dashboard-grid">
-        <article className="dashboard-card">
-          <h2>Active Projects</h2>
-          <p>10 live projects in production.</p>
-        </article>
-
-        <article className="dashboard-card">
-          <h2>Pending Tasks</h2>
-          <p>5 items awaiting review.</p>
-        </article>
-
-        <article className="dashboard-card">
-          <h2>Revenue</h2>
-          <p>Tracking performance and growth metrics.</p>
-        </article>
-      </section>
-    </main>
+    <div className="dashboard-container">
+      <aside className="dashboard-sidebar">
+        <Navbardash
+          isLoggedIn={isLoggedIn}
+          isLoggingIn={isLoggingIn}
+          onLogin={() => {}}
+          onLogout={onLogout}
+          activeTab={activeTab} 
+          setActiveTab={setActiveTab} />
+      </aside>
+      <main className="dashboard-page">
+        {renderPage()}
+      </main>
+    </div>
   );
 }
 

@@ -154,6 +154,7 @@ body::before {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+
 .logo {
     font-size: 1.8rem;
     font-weight: 800;
@@ -175,6 +176,7 @@ nav {
     align-items: center;
     justify-content: center;
     background: rgba(0, 0, 0, 0.55);
+    backdrop-filter:blur(6px);
     z-index: 1000;
 }
 
@@ -182,7 +184,7 @@ nav {
     width: min(420px, calc(100% - 32px));
     padding: 32px;
     border-radius: 24px;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(16px);
 }
@@ -223,20 +225,37 @@ nav {
 
 .login-actions button {
     padding: 12px 18px;
-    border-radius: 14px;
-    border: none;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: 700;
+
+    color: white;
+    border: none;
+    text-transform: uppercase;
+    text-align: right;
+    box-shadow: inset -5px 0px 0px 0px rgb(79, 0, 0);
 }
 
 .login-actions button[type="submit"] {
-    background: #38bdf8;
-    color: #000;
+    background: linear-gradient(4deg, #000000, #000000);
 }
 
 .login-actions button[type="button"] {
-    background: rgba(255, 255, 255, 0.08);
+    background: linear-gradient(4deg, #000000, #000000);
+    color: #ff0000;
+}
+
+.error-fallback {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    text-align: center;
     color: #fff;
+}
+
+.error-fallback h2 {
+    margin-bottom: 8px;
 }
 
 nav a {
@@ -251,6 +270,17 @@ nav a:hover,
 nav a.active {
     color: #38bdf8;
 }
+/* ==============================
+    dashboard-grid
+    
+    =======================*/
+    .dashboard-grid{
+    display: grid;
+    grid-auto-flow: column;
+    align-content: center;
+    justify-content: space-around;
+    justify-items: center;
+    }
 
 /* ===========================
    BUTTONS
@@ -841,7 +871,7 @@ width:100%;
   height: 72px;
   border-radius: 50%;
   border: 8px solid rgba(255, 255, 255, 0.12);
-  border-top-color: rgba(56, 189, 248, 0.88);
+  border-top-color: rgba(248, 56, 56, 0.88);
   animation: preloader-spin 1.2s linear infinite;
 }
 
@@ -862,7 +892,7 @@ width:100%;
 
 .preloader-dots span {
   opacity: 0.15;
-  color: #38bdf8;
+  color: #9a0101;
   font-size: 1.2rem;
   animation: preloader-dot-pulse 1.2s ease-in-out infinite;
 }

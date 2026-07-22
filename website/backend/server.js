@@ -75,6 +75,9 @@ app.get('/read-cookie', (req, res) => {
 const userRoutes = require('./API/routes/userRoutes');
 app.use('/api', userRoutes);
 
+const clientRoutes = require('./API/routes/clientRoutes');
+app.use('/api', clientRoutes);
+
 app.use((err, req, res, next) => {
   console.error('Error:', err.message);
   res.status(500).json({ error: err.message });

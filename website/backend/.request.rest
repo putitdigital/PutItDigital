@@ -1,5 +1,5 @@
 
-GET http://localhost:8080/api/users
+GET http://localhost:8080/api/clients
 
 ###
 
@@ -10,7 +10,9 @@ Content-Type: application/json
     "name": "sithe",
     "email": "sithe@gmail.com",
     "number": "08453889543",
-    "password": "123456"
+    "password": "123456",
+    "website":"putitdigital.co.za",
+    "role": "admin"
 }
 
 ###
@@ -18,14 +20,11 @@ DELETE http://localhost:8080/api/users/6
 
 ###
 
-PUT http://localhost:8080/api/users/7
+PUT http://localhost:8080/api/users/1
 Content-Type: application/json
 
 {
-    "name": "John",
-    "email": "John@gmail.com",
-    "number": "08453889543",
-    "password": "123456"
+    "password": "1234567"
 }
 
 ###

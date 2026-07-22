@@ -49,11 +49,30 @@ const db = require('../config/db');
       }
     };
 
-    exports.updateUser = (id, data, callback) => {
-      db.query('UPDATE users SET ? WHERE id = ?', [data, id], (err, results) => {
-        if (err) return callback(err);
-        callback(null, results.affectedRows);
-      });
+    exports.updateUser = async (id, data, callback) => {
+      const sanitized = { ...data };
+
+      try {
+        if (sanitized.password) {
+          const salt = await bcrypt.genSalt();
+          sanitized.password = await bcrypt.hash(sanitized.password, salt);
+        } else {
+          delete sanitized.password;
+        }
+
+        if (sanitized.number !== undefined && typeof sanitized.number !== 'string') {
+          sanitized.number = String(sanitized.number);
+        }
+
+        delete sanitized.id;
+
+        db.query('UPDATE users SET ? WHERE id = ?', [sanitized, id], (err, results) => {
+          if (err) return callback(err);
+          callback(null, results.affectedRows);
+        });
+      } catch (err) {
+        return callback(err);
+      }
     };
   
     exports.deleteUser = (id, callback) => {
